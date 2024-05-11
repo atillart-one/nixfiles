@@ -39,6 +39,10 @@
     isNormalUser = true;
     initialPassword = "123";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    packages = with pkgs; [ 
+      git
+      gh
+    ];
   };
 
   # List packages installed in system profile. To search, run:
@@ -46,7 +50,6 @@
   environment.systemPackages = with pkgs; [
     neovim
     wget
-    git
   ];
 	
   hardware.nvidia.prime = {
