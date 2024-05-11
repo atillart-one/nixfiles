@@ -1,4 +1,4 @@
-{ config }: {
+{ config, lib, inputs, ... }: {
   # This will add each flake input as a registry
   # To make nix3 commands consistent with your flake
   nix = {
@@ -8,6 +8,8 @@
       auto-optimise-store = true;
     };
   };
+
+  nixpkgs.config.allowUnfree = true;
 
   services.openssh = {
     enable = true;

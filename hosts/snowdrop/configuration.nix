@@ -7,9 +7,9 @@
 }: {
   imports = [
     inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-ssd
     inputs.hardware.nixosModules.common-gpu-nvidia
-    inputs.hardware.nixosModules.common-laptop
+    inputs.hardware.nixosModules.common-pc-ssd
+    inputs.hardware.nixosModules.common-pc-laptop
     ./hardware-configuration.nix
     ../common.nix
   ];
@@ -48,11 +48,12 @@
     wget
     git
   ];
-
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
-  system.copySystemConfiguration = true;
+	
+  hardware.nvidia.prime = {
+    # Make sure to use the correct Bus ID values for your system!
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
