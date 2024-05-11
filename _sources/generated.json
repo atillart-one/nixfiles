@@ -1,0 +1,22 @@
+{
+    "nyoom-nvim": {
+        "cargoLocks": null,
+        "date": "2023-11-05",
+        "extract": null,
+        "name": "nyoom-nvim",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "nyoom-engineering",
+            "repo": "nyoom.nvim",
+            "rev": "f808500883ffc552b53a421139cc1915955759b7",
+            "sha256": "sha256-XzQB4bZeS2xTCEsUvPNi66901ZSI1k576oEFjTA54nU=",
+            "type": "github"
+        },
+        "version": "f808500883ffc552b53a421139cc1915955759b7"
+    }
+}

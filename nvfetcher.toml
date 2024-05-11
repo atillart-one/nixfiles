@@ -1,0 +1,3 @@
+[nyoom-nvim]
+src.git = "https://github.com/nyoom-engineering/nyoom.nvim"
+fetch.github = "nyoom-engineering/nyoom.nvim"
