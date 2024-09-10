@@ -16,6 +16,7 @@
   ];
 
   nix.settings = {
+    trusted-users = [ "rs" ];
     substituters = [ "https://cuda-maintainers.cachix.org" ];
     trusted-public-keys = [
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
@@ -36,6 +37,7 @@
       package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
     };
   };
+
   # NixOS-WSL disables this by default
   security.sudo.wheelNeedsPassword = true;
 

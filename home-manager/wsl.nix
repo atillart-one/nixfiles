@@ -6,4 +6,8 @@
       executable = true;
     };
   };
+  xdg.configFile."awesome" = { 
+	source = ./awe;
+	recursive = true;
+  };
 }
