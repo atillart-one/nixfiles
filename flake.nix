@@ -41,6 +41,16 @@
           modules = [
             ./hosts/snowdrop/configuration.nix
             ./hosts/snowdrop/hosted.nix
+	    home-manager.nixosModules.home-manager
+            {
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.rs = import ./home-manager/snowdrop.nix;
+                extraSpecialArgs = { inherit inputs; };
+              };
+            }
+
           ];
         };
       };

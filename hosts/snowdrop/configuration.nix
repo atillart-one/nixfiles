@@ -48,7 +48,9 @@
     wget
     git
   ];
-	
+
+  programs.nix-ld.enable = true;
+
   hardware.nvidia = {
 	prime = {
 	  offload.enable = false;
