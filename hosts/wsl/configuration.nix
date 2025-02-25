@@ -3,11 +3,12 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
-{ config
-, lib
-, pkgs
-, inputs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
 }: {
   imports = [
     # include NixOS-WSL modules
@@ -16,8 +17,8 @@
   ];
 
   nix.settings = {
-    trusted-users = [ "rs" ];
-    substituters = [ "https://cuda-maintainers.cachix.org" ];
+    trusted-users = ["rs"];
+    substituters = ["https://cuda-maintainers.cachix.org"];
     trusted-public-keys = [
       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
     ];
@@ -26,22 +27,23 @@
   wsl.enable = true;
   networking.hostName = "mistletoe";
   wsl.defaultUser = "rs";
-  users.users.rs.shell = pkgs.nushell;
-
+  users.users.rs = {
+    shell = pkgs.fish;
+    extraGroups = ["docker"];
+  };
+  virtualisation.docker.enable = true;
   services.openssh.allowSFTP = true;
 
   programs = {
     fish.enable = true;
-    nix-ld = {
-      enable = true;
-      package = inputs.nix-ld-rs.packages."${pkgs.system}".nix-ld-rs;
-    };
+    nix-ld.enable = true;
+    direnv.enable = true;
   };
 
   # NixOS-WSL disables this by default
   security.sudo.wheelNeedsPassword = true;
 
-  environment.systemPackages = with pkgs; [ wslu nushell sshfs ];
+  environment.systemPackages = with pkgs; [wslu helix sshfs];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
