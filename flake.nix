@@ -8,7 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     wsl.url = "github:nix-community/NixOS-WSL";
     nix-ld-rs = {
       url = "github:nix-community/nix-ld-rs";
@@ -41,6 +40,7 @@
           specialArgs = { inherit inputs; };
           modules = [
             ./hosts/snowdrop/configuration.nix
+            ./hosts/snowdrop/hosted.nix
           ];
         };
       };

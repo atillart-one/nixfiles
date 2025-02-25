@@ -38,11 +38,7 @@
   users.users.rs = {
     isNormalUser = true;
     initialPassword = "123";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [ 
-      git
-      gh
-    ];
+    extraGroups = [ "wheel" "docker" ]; # Enable ‘sudo’ for the user.
   };
 
   # List packages installed in system profile. To search, run:
@@ -50,13 +46,29 @@
   environment.systemPackages = with pkgs; [
     neovim
     wget
+    git
   ];
 	
-  hardware.nvidia.prime = {
-    # Make sure to use the correct Bus ID values for your system!
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
+  hardware.nvidia = {
+	prime = {
+	  offload.enable = false;
+	  sync.enable = true;
+
+    	  # Make sure to use the correct Bus ID values for your system!
+    	  intelBusId = "PCI:0:2:0";
+    	  nvidiaBusId = "PCI:1:0:0";
+	};
+	open = false;
   };
+
+  hardware.graphics.enable32Bit = true;
+
+  virtualisation.docker = {
+  	enable = true;
+	storageDriver = "btrfs";
+  };
+
+  hardware.nvidia-container-toolkit.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
